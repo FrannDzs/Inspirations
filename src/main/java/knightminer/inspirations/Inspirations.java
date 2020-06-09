@@ -13,6 +13,7 @@ import knightminer.inspirations.common.datagen.InspirationsLootTableProvider;
 import knightminer.inspirations.common.network.InspirationsNetwork;
 import knightminer.inspirations.library.InspirationsRegistry;
 import knightminer.inspirations.library.Util;
+import knightminer.inspirations.library.recipe.BlockIngredient;
 import knightminer.inspirations.library.recipe.ModItemList;
 import knightminer.inspirations.library.recipe.ShapelessNoContainerRecipe;
 import knightminer.inspirations.library.recipe.TextureRecipe;
@@ -141,6 +142,7 @@ public class Inspirations {
 		CraftingHelper.register(pulseLoaded);
 		CraftingHelper.register(confEnabled);
 		CraftingHelper.register(Util.getResource("mod_item_list"), ModItemList.SERIALIZER);
+		CraftingHelper.register(Util.getResource("blockstate"), BlockIngredient.SERIALIZER);
 
 		LootConditionManager.registerCondition(pulseLoaded);
 		LootConditionManager.registerCondition(confEnabled);

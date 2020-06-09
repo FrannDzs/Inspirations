@@ -41,6 +41,7 @@ public abstract class BlockIngredient extends Ingredient {
 	public boolean hasNoMatchingItems() {
 		return false;
 	}
+
 	/**
 	 * Dummy implementation, should not be used on normal recipes.
 	 */
@@ -77,12 +78,12 @@ public abstract class BlockIngredient extends Ingredient {
 	@Nonnull
 	@Override
 	public IIngredientSerializer<? extends Ingredient> getSerializer() {
-		return BlockIngredientSerialiser.INSTANCE;
+		return SERIALIZER;
 	}
 
-	public static class BlockIngredientSerialiser implements IIngredientSerializer<BlockIngredient> {
-		public static BlockIngredientSerialiser INSTANCE = new BlockIngredientSerialiser();
+	public static IIngredientSerializer<BlockIngredient> SERIALIZER = new BlockIngredientSerialiser();
 
+	private static class BlockIngredientSerialiser implements IIngredientSerializer<BlockIngredient> {
 		@Nonnull
 		@Override
 		public BlockIngredient parse(@Nonnull JsonObject json) {
