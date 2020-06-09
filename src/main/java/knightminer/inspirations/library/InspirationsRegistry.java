@@ -2,6 +2,7 @@ package knightminer.inspirations.library;
 
 import com.google.common.collect.ImmutableList;
 import knightminer.inspirations.library.event.RegisterEvent.RegisterCauldronRecipe;
+import knightminer.inspirations.library.recipe.anvil.AnvilRecipe;
 import knightminer.inspirations.library.recipe.cauldron.FillCauldronRecipe;
 import knightminer.inspirations.library.recipe.cauldron.FluidCauldronRecipe;
 import knightminer.inspirations.library.recipe.cauldron.FluidTransformCauldronRecipe;
@@ -15,6 +16,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.common.ToolType;
 import org.apache.logging.log4j.Logger;
@@ -34,6 +36,8 @@ public class InspirationsRegistry {
 	public static final Logger log = Util.getLogger("api");
 
 	public static final ToolType SHEAR_TYPE = ToolType.get("shears");
+
+	public static IRecipeType<AnvilRecipe> ANVIL_RECIPE_TYPE = IRecipeType.register("inspirations:anvil_recipe");
 
 	/**
 	 * Sets a value from the Inspirations config into the registry. Used to keep the config out of the library

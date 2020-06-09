@@ -16,6 +16,7 @@ import knightminer.inspirations.library.Util;
 import knightminer.inspirations.library.recipe.ModItemList;
 import knightminer.inspirations.library.recipe.ShapelessNoContainerRecipe;
 import knightminer.inspirations.library.recipe.TextureRecipe;
+import knightminer.inspirations.library.recipe.anvil.AnvilRecipe;
 import knightminer.inspirations.shared.InspirationsShared;
 import knightminer.inspirations.tools.InspirationsTools;
 import knightminer.inspirations.tweaks.InspirationsTweaks;
@@ -131,6 +132,7 @@ public class Inspirations {
 
 		r.register(ShapelessNoContainerRecipe.SERIALIZER);
 		r.register(TextureRecipe.SERIALIZER);
+		r.register(AnvilRecipe.SERIALIZER);
 
 		// These don't have registry events yet.
 		PulseLoadedCondition.Serializer pulseLoaded = new PulseLoadedCondition.Serializer();
