@@ -12,6 +12,7 @@ import knightminer.inspirations.library.recipe.cauldron.MixCauldronRecipe;
 import knightminer.inspirations.library.util.ReflectionUtil;
 import knightminer.inspirations.recipes.block.EnhancedCauldronBlock;
 import knightminer.inspirations.recipes.block.SmashingAnvilBlock;
+import knightminer.inspirations.recipes.entity.SmashingAnvilEntity;
 import knightminer.inspirations.recipes.item.MixedDyedBottleItem;
 import knightminer.inspirations.recipes.item.SimpleDyedBottleItem;
 import knightminer.inspirations.recipes.recipe.cauldron.ArmorClearingCauldronRecipe;
@@ -29,6 +30,8 @@ import knightminer.inspirations.recipes.recipe.cauldron.fill.PotionFillCauldron;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ArmorMaterial;
@@ -86,6 +89,8 @@ public class InspirationsRecipes extends PulseBase {
 	public static Fluid rabbitStew;
 	public static Fluid milk;
 
+	public static EntityType<SmashingAnvilEntity> SMASHING_ANVIL = EntityType.Builder
+			.<SmashingAnvilEntity>create(SmashingAnvilEntity::new, EntityClassification.MISC).size(0.98F, 0.98F);
 
 	@SubscribeEvent
 	public void preInit(FMLCommonSetupEvent event) {
