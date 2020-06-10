@@ -46,15 +46,14 @@ public class EnhancedCauldronBlock extends CauldronBlock {
 	public EnhancedCauldronBlock() {
 		super(Block.Properties.from(Blocks.CAULDRON));
 
-		BlockState state = this.getDefaultState()
-				.with(LEVEL, 0)
-				.with(BOILING, false)
-				.with(CONTENTS, CauldronContents.FLUID);
-		if (Config.enableBiggerCauldron()) {
-			state = state.with(LEVEL_EXT, 0);
-		}
-		this.setDefaultState(state);
-		this.setRegistryName(Blocks.CAULDRON.getRegistryName());
+//		BlockState state = this.getDefaultState()
+//				.with(LEVEL, 0)
+//				.with(BOILING, false)
+//				.with(CONTENTS, CauldronContents.FLUID);
+//		if (Config.enableBiggerCauldron()) {
+//			state = state.with(LEVEL_EXT, 0);
+//		}
+//		this.setDefaultState(state);
 	}
 
 
@@ -141,13 +140,13 @@ public class EnhancedCauldronBlock extends CauldronBlock {
 
 	/* Content texture */
 
-	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(CONTENTS, BOILING, LEVEL);
-		if(Config.enableBiggerCauldron()) {
-			builder.add(LEVEL_EXT);
-		}
-	}
+//	@Override
+//	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+//		builder.add(CONTENTS, BOILING, LEVEL);
+//		if(Config.enableBiggerCauldron()) {
+//			builder.add(LEVEL_EXT);
+//		}
+//	}
 
 	@Deprecated
 	@Nonnull
