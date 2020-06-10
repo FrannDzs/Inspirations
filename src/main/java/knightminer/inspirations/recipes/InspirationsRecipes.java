@@ -11,7 +11,6 @@ import knightminer.inspirations.library.recipe.cauldron.ICauldronRecipe;
 import knightminer.inspirations.library.recipe.cauldron.MixCauldronRecipe;
 import knightminer.inspirations.library.util.ReflectionUtil;
 import knightminer.inspirations.recipes.block.EnhancedCauldronBlock;
-import knightminer.inspirations.recipes.block.SmashingAnvilBlock;
 import knightminer.inspirations.recipes.entity.SmashingAnvilEntity;
 import knightminer.inspirations.recipes.item.MixedDyedBottleItem;
 import knightminer.inspirations.recipes.item.SimpleDyedBottleItem;
@@ -72,10 +71,6 @@ public class InspirationsRecipes extends PulseBase {
 	public static Object proxy = DistExecutor.callWhenOn(Dist.CLIENT, ()->()->new RecipesClientProxy());
 
 	// blocks
-	public static Block fullAnvil;
-	public static Block chippedAnvil;
-	public static Block damagedAnvil;
-
 	public static EnhancedCauldronBlock cauldron;
 
 	// items
@@ -97,6 +92,7 @@ public class InspirationsRecipes extends PulseBase {
 			"falling_anvil"
 	);
 
+
 	@SubscribeEvent
 	public void preInit(FMLCommonSetupEvent event) {
 		//TODO: reimplement
@@ -114,12 +110,6 @@ public class InspirationsRecipes extends PulseBase {
 	public void registerBlocks(Register<Block> event) {
 		IForgeRegistry<Block> r = event.getRegistry();
 
-		if(Config.enableAnvilSmashing.get()) {
-			fullAnvil = new SmashingAnvilBlock(Blocks.ANVIL);
-			chippedAnvil = new SmashingAnvilBlock(Blocks.CHIPPED_ANVIL);
-			damagedAnvil = new SmashingAnvilBlock(Blocks.DAMAGED_ANVIL);
-			r.registerAll(fullAnvil, chippedAnvil, damagedAnvil);
-		}
 		if(Config.enableExtendedCauldron()) {
 			cauldron = register(r, new EnhancedCauldronBlock(), Blocks.CAULDRON.getRegistryName());
 		}
@@ -152,6 +142,7 @@ public class InspirationsRecipes extends PulseBase {
 		IForgeRegistry<EntityType<?>> r = event.getRegistry();
 		r.register(smashingAnvil);
 	}
+
 	/* TODO: reimplement
 	@SubscribeEvent
 	public void registerRecipes(Register<IRecipe<ICraftingRecipe>> event) {
