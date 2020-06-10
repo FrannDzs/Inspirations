@@ -18,6 +18,7 @@ import knightminer.inspirations.library.recipe.ModItemList;
 import knightminer.inspirations.library.recipe.ShapelessNoContainerRecipe;
 import knightminer.inspirations.library.recipe.TextureRecipe;
 import knightminer.inspirations.library.recipe.anvil.AnvilRecipe;
+import knightminer.inspirations.recipes.InspirationsRecipes;
 import knightminer.inspirations.shared.InspirationsShared;
 import knightminer.inspirations.tools.InspirationsTools;
 import knightminer.inspirations.tweaks.InspirationsTweaks;
@@ -47,7 +48,6 @@ import slimeknights.mantle.pulsar.control.PulseManager;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-//import knightminer.inspirations.recipes.InspirationsRecipes;
 
 @Mod(Inspirations.modID)
 public class Inspirations {
@@ -90,7 +90,7 @@ public class Inspirations {
 		pulseManager.registerPulse(new InspirationsBuilding());
 		pulseManager.registerPulse(new InspirationsUtility());
 		pulseManager.registerPulse(new InspirationsTools());
-//		pulseManager.registerPulse(new InspirationsRecipes());
+		pulseManager.registerPulse(new InspirationsRecipes());
 		pulseManager.registerPulse(new InspirationsTweaks());
 		pulseManager.enablePulses();
 

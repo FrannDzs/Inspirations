@@ -388,14 +388,13 @@ public class Config {
 		builder.pop();
 
 		// recipes
-		/*
+
 		builder.push("recipes");
 		{
 			// anvil smashing
 			// configFile.moveProperty("tweaks", "anvilSmashing", "recipes");
-			enableAnvilSmashing = builder_override
-					.comment("Anvils break glass blocks and transform blocks into other blocks on landing. Uses a block override, so disable if another mod replaces anvils.")
-					.worldRestart()
+			enableAnvilSmashing = builder
+					.comment("Anvils break glass blocks and transform blocks into other blocks on landing.")
 					.define("anvilSmashing", true);
 
 			// cauldron //
@@ -475,7 +474,6 @@ public class Config {
 			builder.pop();
 		}
 		builder.pop();
-		 */
 
 		builder.push("tools");
 		{
