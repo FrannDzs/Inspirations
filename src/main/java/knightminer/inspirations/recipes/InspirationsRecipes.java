@@ -62,6 +62,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 import slimeknights.mantle.util.RecipeMatch;
 
+import java.util.EnumMap;
 import java.util.Map;
 
 @Pulse(id = InspirationsRecipes.pulseID, description = "Adds additional recipe types, including cauldrons and anvil smashing")
@@ -80,7 +81,7 @@ public class InspirationsRecipes extends PulseBase {
 	// items
 	public static Item splashBottle;
 	public static Item lingeringBottle;
-	public static Map<DyeColor,SimpleDyedBottleItem> simpleDyedWaterBottle;
+	public static Map<DyeColor,SimpleDyedBottleItem> simpleDyedWaterBottle = new EnumMap<>(DyeColor.class);
 	public static MixedDyedBottleItem mixedDyedWaterBottle;
 
 	// fluids
