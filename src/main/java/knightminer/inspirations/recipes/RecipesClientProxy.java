@@ -1,8 +1,17 @@
 package knightminer.inspirations.recipes;
 
 import knightminer.inspirations.common.ClientProxy;
+import net.minecraft.client.renderer.entity.FallingBlockRenderer;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class RecipesClientProxy extends ClientProxy {
+	@SubscribeEvent
+	public void clientSetup(FMLClientSetupEvent event) {
+		RenderingRegistry.registerEntityRenderingHandler(InspirationsRecipes.smashingAnvil, FallingBlockRenderer::new);
+	}
+
 	/* TODO: reimplement
 	private static final ResourceLocation POTION_MODEL = new ResourceLocation("bottle_drinkable");
 	public static final ResourceLocation CAULDRON_MODEL = Util.getResource("cauldron");

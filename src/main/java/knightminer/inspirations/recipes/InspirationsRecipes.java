@@ -89,8 +89,12 @@ public class InspirationsRecipes extends PulseBase {
 	public static Fluid rabbitStew;
 	public static Fluid milk;
 
-	public static EntityType<SmashingAnvilEntity> SMASHING_ANVIL = EntityType.Builder
-			.<SmashingAnvilEntity>create(SmashingAnvilEntity::new, EntityClassification.MISC).size(0.98F, 0.98F);
+	public static EntityType<SmashingAnvilEntity> smashingAnvil = buildEntity(EntityType.Builder
+			.<SmashingAnvilEntity>create(SmashingAnvilEntity::new, EntityClassification.MISC)
+			.size(0.98F, 0.98F)
+			.setCustomClientFactory((packet, world) -> new SmashingAnvilEntity(InspirationsRecipes.smashingAnvil, world)),
+			"falling_anvil"
+	);
 
 	@SubscribeEvent
 	public void preInit(FMLCommonSetupEvent event) {
@@ -142,6 +146,11 @@ public class InspirationsRecipes extends PulseBase {
 		mixedDyedWaterBottle = registerItem(r, new MixedDyedBottleItem(), "mixed_dyed_bottle");
 	}
 
+	@SubscribeEvent
+	public void registerEntities(Register<EntityType<?>> event) {
+		IForgeRegistry<EntityType<?>> r = event.getRegistry();
+		r.register(smashingAnvil);
+	}
 	/* TODO: reimplement
 	@SubscribeEvent
 	public void registerRecipes(Register<IRecipe<ICraftingRecipe>> event) {
