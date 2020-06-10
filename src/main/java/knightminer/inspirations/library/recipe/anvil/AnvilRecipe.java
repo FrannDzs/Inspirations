@@ -215,7 +215,7 @@ public class AnvilRecipe implements IRecipe<AnvilInventory> {
 	@Nonnull
 	@Override
 	public ItemStack getIcon() {
-		return new ItemStack(Items.FURNACE);
+		return new ItemStack(Items.ANVIL);
 	}
 
 	@Nonnull
@@ -237,7 +237,7 @@ public class AnvilRecipe implements IRecipe<AnvilInventory> {
 	}
 
 	public static final IRecipeSerializer<?> SERIALIZER = new AnvilRecipeSerializer()
-			.setRegistryName(new ResourceLocation(Inspirations.modID, "anvil"));
+			.setRegistryName(new ResourceLocation(Inspirations.modID, "anvil_smashing"));
 
 	private static class AnvilRecipeSerializer
 			extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>
