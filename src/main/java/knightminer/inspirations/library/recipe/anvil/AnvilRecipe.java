@@ -36,6 +36,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public class AnvilRecipe implements IRecipe<AnvilInventory> {
+	public static final String FROM_INPUT = "<input>";
 
 	private final ResourceLocation id;
 	private final NonNullList<Ingredient> ingredients;
@@ -118,7 +119,7 @@ public class AnvilRecipe implements IRecipe<AnvilInventory> {
 		for(Pair<String, String> prop: properties) {
 			String key = prop.getFirst();
 			String value = prop.getSecond();
-			if (value.equals("<input>")) {
+			if (value.equals(FROM_INPUT)) {
 				IProperty<?> inpProp = inpContainer.getProperty(key);
 				if (inpProp == null) {
 					InspirationsRegistry.log.warn(
@@ -257,11 +258,11 @@ public class AnvilRecipe implements IRecipe<AnvilInventory> {
 
 			// Generate the output blockstate.
 			JsonObject result = JSONUtils.getJsonObject(json, "result");
-			String blockName = JSONUtils.getString(result, "block");
+			String blockName = JSONUtils.getString(result, "block", FROM_INPUT);
 
 			Block block;
 
-			if (blockName.equals("<input>")) {
+			if (blockName.equals(FROM_INPUT)) {
 				// We keep the block, maybe tranferring properties.
 				block = null;
 			} else {
