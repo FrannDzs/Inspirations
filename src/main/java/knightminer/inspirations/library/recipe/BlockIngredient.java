@@ -1,8 +1,12 @@
 package knightminer.inspirations.library.recipe;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSyntaxException;
+import com.mojang.datafixers.util.Pair;
+import knightminer.inspirations.library.Util;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -16,13 +20,13 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.IIngredientSerializer;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.IRegistryDelegate;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
 public abstract class BlockIngredient extends Ingredient {
+	public static final ResourceLocation RECIPE_TYPE_ID = Util.getResource("blockstate");
 	public final StatePropertiesPredicate predicate;
 
 	protected BlockIngredient(StatePropertiesPredicate blockstateMatcher) {
@@ -31,6 +35,7 @@ public abstract class BlockIngredient extends Ingredient {
 	}
 
 	protected abstract boolean matchesBlock(Block block);
+	protected abstract Pair<String, JsonElement> matchJSON();
 
 	@Override
 	public boolean isSimple() {
@@ -73,6 +78,19 @@ public abstract class BlockIngredient extends Ingredient {
 			return false;
 		}
 		return predicate.matches(state);
+	}
+
+	@Nonnull
+	@Override
+	public JsonElement serialize() {
+		JsonObject result = new JsonObject();
+		result.addProperty("type", RECIPE_TYPE_ID.toString());
+
+		Pair<String, JsonElement> blockData = matchJSON();
+		result.add(blockData.getFirst(), blockData.getSecond());
+
+		result.add("properties", predicate.toJsonElement());
+		return result;
 	}
 
 	@Nonnull
@@ -139,7 +157,7 @@ public abstract class BlockIngredient extends Ingredient {
 				buffer.writeResourceLocation(((TaggedBlockIngredient) ingredient).tag.getId());
 			} else if (ingredient instanceof DirectBlockIngredient) {
 				buffer.writeBoolean(false);
-				buffer.writeResourceLocation(((DirectBlockIngredient) ingredient).block.name());
+				buffer.writeResourceLocation(((DirectBlockIngredient) ingredient).block.getRegistryName());
 			} else {
 				throw new IllegalArgumentException("Unknown BlockIngredient " + ingredient.getClass().getName());
 			}
@@ -148,37 +166,42 @@ public abstract class BlockIngredient extends Ingredient {
 
 
 	public static class DirectBlockIngredient extends BlockIngredient {
-		public final IRegistryDelegate<Block> block;
+		public final Block block;
 
-		protected DirectBlockIngredient(Block block, StatePropertiesPredicate predicate) {
+		public DirectBlockIngredient(Block block, StatePropertiesPredicate predicate) {
 			super(predicate);
-			this.block = block.delegate;
+			this.block = block;
 		}
 
-		protected DirectBlockIngredient(ResourceLocation blockName, StatePropertiesPredicate predicate) {
+		public DirectBlockIngredient(ResourceLocation blockName, StatePropertiesPredicate predicate) {
 			super(predicate);
 			Block block = ForgeRegistries.BLOCKS.getValue(blockName);
 			if (block == null) {
 				throw new JsonSyntaxException("Unknown block '" + blockName + "'");
 			}
-			this.block = block.delegate;
+			this.block = block;
 		}
 
 		@Override
 		protected boolean matchesBlock(Block block) {
-			return block.delegate.get() == this.block.get();
+			return block.delegate.get() == this.block;
+		}
+
+		@Override
+		protected Pair<String, JsonElement> matchJSON() {
+			return Pair.of("block", new JsonPrimitive(block.getRegistryName().toString()));
 		}
 	}
 
 	public static class TaggedBlockIngredient extends BlockIngredient {
 		public final Tag<Block> tag;
 
-		protected TaggedBlockIngredient(Tag<Block> tag, StatePropertiesPredicate predicate) {
+		public TaggedBlockIngredient(Tag<Block> tag, StatePropertiesPredicate predicate) {
 			super(predicate);
 			this.tag = tag;
 		}
 
-		protected TaggedBlockIngredient(ResourceLocation tagName, StatePropertiesPredicate predicate) {
+		public TaggedBlockIngredient(ResourceLocation tagName, StatePropertiesPredicate predicate) {
 			super(predicate);
 			this.tag = BlockTags.getCollection().get(tagName);
 			if (this.tag == null) {
@@ -189,6 +212,11 @@ public abstract class BlockIngredient extends Ingredient {
 		@Override
 		protected boolean matchesBlock(Block block) {
 			return tag.contains(block);
+		}
+
+		@Override
+		protected Pair<String, JsonElement> matchJSON() {
+			return Pair.of("tag", new JsonPrimitive(tag.getId().toString()));
 		}
 	}
 }

@@ -142,7 +142,7 @@ public class Inspirations {
 		CraftingHelper.register(pulseLoaded);
 		CraftingHelper.register(confEnabled);
 		CraftingHelper.register(Util.getResource("mod_item_list"), ModItemList.SERIALIZER);
-		CraftingHelper.register(Util.getResource("blockstate"), BlockIngredient.SERIALIZER);
+		CraftingHelper.register(BlockIngredient.RECIPE_TYPE_ID, BlockIngredient.SERIALIZER);
 
 		LootConditionManager.registerCondition(pulseLoaded);
 		LootConditionManager.registerCondition(confEnabled);
