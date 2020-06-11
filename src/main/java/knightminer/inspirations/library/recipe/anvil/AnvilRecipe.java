@@ -267,7 +267,7 @@ public class AnvilRecipe implements IRecipe<AnvilInventory> {
 				block = null;
 			} else {
 				block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(blockName));
-				if(block == null || block == Blocks.AIR) {
+				if (block == null) {
 					throw new JsonParseException("Unknown block \"" + blockName + "\"");
 				}
 			}
@@ -293,6 +293,7 @@ public class AnvilRecipe implements IRecipe<AnvilInventory> {
 			if(resultName.isEmpty()) {
 				result = null;
 			} else {
+				// Should never be missing, since we've already validated it.
 				result = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(resultName));
 			}
 
