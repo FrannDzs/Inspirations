@@ -1,0 +1,12 @@
+{
+  "type": "inspirations:anvil_smashing",
+  "result": {
+    "block": "inspirations:plain_mulch"
+  },
+  "ingredients": [
+    {
+      "type": "inspirations:blockstate",
+      "tag": "minecraft:planks"
+    }
+  ]
+}
