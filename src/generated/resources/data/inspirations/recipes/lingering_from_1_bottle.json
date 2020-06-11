@@ -1,0 +1,24 @@
+{
+  "conditions": [
+    {
+      "pulse": "InspirationsRecipes",
+      "type": "inspirations:pulse_loaded"
+    },
+    {
+      "prop": "cauldron_potions",
+      "type": "inspirations:config"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "minecraft:dragon_breath"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "result": {
+    "item": "inspirations:lingering_bottle"
+  },
+  "type": "minecraft:crafting_shapeless"
+}

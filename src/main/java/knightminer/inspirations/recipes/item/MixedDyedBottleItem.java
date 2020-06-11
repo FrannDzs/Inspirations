@@ -21,7 +21,7 @@ public class MixedDyedBottleItem extends HidableItem {
 				.group(ItemGroup.MATERIALS)
 				.maxStackSize(16)
 				.containerItem(Items.GLASS_BOTTLE),
-                Config::enableCauldronDyeing
+				Config::enableCauldronDyeing
 		);
 	}
 

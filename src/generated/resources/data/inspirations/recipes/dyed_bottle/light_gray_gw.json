@@ -1,0 +1,25 @@
+{
+  "conditions": [
+    {
+      "pulse": "InspirationsRecipes",
+      "type": "inspirations:pulse_loaded"
+    },
+    {
+      "prop": "patch_vanilla_dye_recipes",
+      "type": "inspirations:config"
+    }
+  ],
+  "group": "inspirations:dyed_bottle",
+  "ingredients": [
+    {
+      "item": "inspirations:gray_dyed_bottle"
+    },
+    {
+      "item": "inspirations:white_dyed_bottle"
+    }
+  ],
+  "result": {
+    "item": "inspirations:light_gray_dyed_bottle"
+  },
+  "type": "inspirations:shapeless_no_container"
+}

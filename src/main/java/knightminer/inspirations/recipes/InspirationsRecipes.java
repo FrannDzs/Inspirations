@@ -11,6 +11,7 @@ import knightminer.inspirations.library.recipe.cauldron.ICauldronRecipe;
 import knightminer.inspirations.library.recipe.cauldron.MixCauldronRecipe;
 import knightminer.inspirations.library.util.ReflectionUtil;
 import knightminer.inspirations.recipes.block.EnhancedCauldronBlock;
+import knightminer.inspirations.recipes.datagen.RecipesRecipeProvider;
 import knightminer.inspirations.recipes.entity.SmashingAnvilEntity;
 import knightminer.inspirations.recipes.item.MixedDyedBottleItem;
 import knightminer.inspirations.recipes.item.SimpleDyedBottleItem;
@@ -29,6 +30,7 @@ import knightminer.inspirations.recipes.recipe.cauldron.fill.PotionFillCauldron;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
@@ -56,6 +58,7 @@ import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.mantle.pulsar.pulse.Pulse;
@@ -180,6 +183,14 @@ public class InspirationsRecipes extends PulseBase {
 			}
 		}
 	}*/
+
+	@SubscribeEvent
+	public void gatherData(GatherDataEvent event) {
+		DataGenerator gen = event.getGenerator();
+		if (event.includeServer()) {
+			gen.addProvider(new RecipesRecipeProvider(gen));
+		}
+	}
 
 	@SubscribeEvent
 	public void init(FMLCommonSetupEvent event) {

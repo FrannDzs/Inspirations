@@ -132,10 +132,10 @@ public class ConfigEnabledCondition implements ICondition, ILootCondition {
 	public static final ConfigEnabledCondition CAVE_SPIDER_WEB = add("cave_spider_web", Config.caveSpiderDrops);
 
 	// recipes
-	public static final ConfigEnabledCondition CAULDRON_DYEING = add("cauldron_dyeing", ()->false/* TODO: Config::enableCauldronDyeing */);
-	public static final ConfigEnabledCondition CAULDRON_FLUIDS = add("cauldron_fluids", ()->false/* TODO: Config::enableCauldronFluids */);
-	public static final ConfigEnabledCondition CAULDRON_POTIONS = add("cauldron_potions", ()->false/* TODO: Config::enableCauldronPotions */);
-	public static final ConfigEnabledCondition EXTRA_DYED_BOTTLE_RECIPES = add("extra_dyed_bottle_recipes", ()->false/* TODO: Config::extraBottleRecipes */);
-	public static final ConfigEnabledCondition PATCH_VANILLA_DYE_RECIPES = add("patch_vanilla_dye_recipes", ()->false/* TODO: Config::patchVanillaDyeRecipes */);
+	public static final ConfigEnabledCondition CAULDRON_DYEING = add("cauldron_dyeing", Config::enableCauldronDyeing);
+	public static final ConfigEnabledCondition CAULDRON_FLUIDS = add("cauldron_fluids", Config::enableCauldronFluids);
+	public static final ConfigEnabledCondition CAULDRON_POTIONS = add("cauldron_potions", Config::enableCauldronPotions);
+	public static final ConfigEnabledCondition EXTRA_DYED_BOTTLE_RECIPES = add("extra_dyed_bottle_recipes", Config::extraBottleRecipes);
+	public static final ConfigEnabledCondition PATCH_VANILLA_DYE_RECIPES = add("patch_vanilla_dye_recipes", Config::patchVanillaDyeRecipes);
 
 }

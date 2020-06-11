@@ -1,0 +1,24 @@
+{
+  "conditions": [
+    {
+      "pulse": "InspirationsRecipes",
+      "type": "inspirations:pulse_loaded"
+    },
+    {
+      "prop": "cauldron_potions",
+      "type": "inspirations:config"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "result": {
+    "item": "inspirations:splash_bottle"
+  },
+  "type": "minecraft:crafting_shapeless"
+}
