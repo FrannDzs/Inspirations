@@ -10,6 +10,7 @@ import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.state.IProperty;
@@ -63,6 +64,11 @@ public class AnvilRecipeBuilder {
 		return this;
 	}
 
+	public AnvilRecipeBuilder addIngredient(Ingredient ing) {
+		ingredients.add(ing);
+		return this;
+	}
+
 	public AnvilRecipeBuilder addIngredient(Block block) {
 		ingredients.add(new BlockIngredient.DirectBlockIngredient(block, StatePropertiesPredicate.EMPTY));
 		return this;
@@ -85,6 +91,11 @@ public class AnvilRecipeBuilder {
 
 	public AnvilRecipeBuilder addIngredient(IItemProvider item) {
 		ingredients.add(Ingredient.fromItems(item));
+		return this;
+	}
+
+	public AnvilRecipeBuilder addTaggedItem(Tag<Item> itemTag) {
+		ingredients.add(Ingredient.fromTag(itemTag));
 		return this;
 	}
 

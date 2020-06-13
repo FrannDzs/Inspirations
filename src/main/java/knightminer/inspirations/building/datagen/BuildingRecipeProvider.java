@@ -4,6 +4,7 @@ import knightminer.inspirations.Inspirations;
 import knightminer.inspirations.building.InspirationsBuilding;
 import knightminer.inspirations.common.data.ConfigEnabledCondition;
 import knightminer.inspirations.common.data.PulseLoadedCondition;
+import knightminer.inspirations.common.datagen.AnvilRecipeBuilder;
 import knightminer.inspirations.common.datagen.CondRecipe;
 import knightminer.inspirations.library.InspirationsTags;
 import knightminer.inspirations.library.Util;
@@ -15,6 +16,7 @@ import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
@@ -26,7 +28,7 @@ import javax.annotation.Nonnull;
 import java.util.function.Consumer;
 
 public class BuildingRecipeProvider extends RecipeProvider implements IConditionBuilder {
-	ICondition BUILDING = new PulseLoadedCondition(InspirationsBuilding.pulseID);
+	private ICondition BUILDING = new PulseLoadedCondition(InspirationsBuilding.pulseID);
 
 	// Prevent needing to pass this into every method.
 	private Consumer<IFinishedRecipe> consumer = null;
@@ -74,6 +76,12 @@ public class BuildingRecipeProvider extends RecipeProvider implements ICondition
 		buildingMulch(InspirationsBuilding.blueMulch, Tags.Items.DYES_BLUE);
 		buildingMulch(InspirationsBuilding.brownMulch, Tags.Items.DYES_BROWN);
 		buildingMulch(InspirationsBuilding.redMulch, Tags.Items.DYES_RED);
+
+		AnvilRecipeBuilder.places(InspirationsBuilding.plainMulch)
+				.addCondition(BUILDING)
+				.addIngredient(BlockTags.PLANKS)
+				.build(consumer);
+
 		buildingColoredBooks();
 
 		buildingFlowerDye(InspirationsBuilding.flower_rose, Items.RED_DYE);
@@ -191,6 +199,11 @@ public class BuildingRecipeProvider extends RecipeProvider implements ICondition
 				.addCriterion("has_mulch", hasItem(InspirationsBuilding.plainMulch))
 				.addIngredient(InspirationsBuilding.plainMulch)
 				.addIngredient(dye)
+				.build(consumer);
+		AnvilRecipeBuilder.places(block)
+				.addCondition(BUILDING)
+				.addIngredient(BlockTags.PLANKS)
+				.addTaggedItem(dye)
 				.build(consumer);
 	}
 

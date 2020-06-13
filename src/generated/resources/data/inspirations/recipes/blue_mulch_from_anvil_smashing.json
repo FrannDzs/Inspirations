@@ -7,12 +7,15 @@
     }
   ],
   "result": {
-    "block": "inspirations:plain_mulch"
+    "block": "inspirations:blue_mulch"
   },
   "ingredients": [
     {
       "type": "inspirations:blockstate",
       "tag": "minecraft:planks"
+    },
+    {
+      "tag": "forge:dyes/blue"
     }
   ]
 }
