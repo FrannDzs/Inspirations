@@ -81,6 +81,8 @@ public class BuildingRecipeProvider extends RecipeProvider implements ICondition
 				.addCondition(BUILDING)
 				.addIngredient(BlockTags.PLANKS)
 				.build(consumer);
+		AnvilRecipeBuilder.smashes().addIngredient(InspirationsBuilding.glassDoor).build(consumer);
+		AnvilRecipeBuilder.smashes().addIngredient(InspirationsBuilding.glassTrapdoor).build(consumer);
 
 		buildingColoredBooks();
 
