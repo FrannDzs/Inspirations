@@ -84,6 +84,7 @@ public class Inspirations {
 
 		MinecraftForge.EVENT_BUS.register(pulseManager);
 		MinecraftForge.EVENT_BUS.addListener(this::registerRecipeTypes);
+		MinecraftForge.EVENT_BUS.addListener(AnvilRecipe::onServerStart);
 		FMLJavaModLoadingContext.get().getModEventBus().register(this);
 
 		pulseManager.registerPulse(new InspirationsShared());
