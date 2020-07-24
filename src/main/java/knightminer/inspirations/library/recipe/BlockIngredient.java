@@ -112,11 +112,10 @@ public abstract class BlockIngredient extends Ingredient {
 				throw new JsonParseException("A Block Ingredient entry is either a tag or a block, not both");
 			} else if (json.has("block")) {
 				ResourceLocation blockName = new ResourceLocation(JSONUtils.getString(json, "block"));
-				Block block = ForgeRegistries.BLOCKS.getValue(blockName);
-				if (block == null) {
+				if (!ForgeRegistries.BLOCKS.containsKey(blockName)) {
 					throw new JsonSyntaxException("Unknown block '" + blockName + "'");
 				} else {
-					return new DirectBlockIngredient(block, predicate);
+					return new DirectBlockIngredient(ForgeRegistries.BLOCKS.getValue(blockName), predicate);
 				}
 			} else if (json.has("tag")) {
 				ResourceLocation tagName = new ResourceLocation(JSONUtils.getString(json, "tag"));
