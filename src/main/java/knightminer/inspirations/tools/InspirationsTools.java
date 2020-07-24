@@ -61,6 +61,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
 import javax.annotation.Nonnull;
+import java.util.EnumMap;
 
 @Pulse(id = InspirationsTools.pulseID, description = "Adds various tools or tweaks to vanilla tools")
 public class InspirationsTools extends PulseBase {
@@ -78,7 +79,7 @@ public class InspirationsTools extends PulseBase {
 	public static ArrowItem redstoneArrow;
 
 	// The "undyed" compass is White.
-	public static WaypointCompassItem[] waypointCompasses = new WaypointCompassItem[16];
+	public static EnumMap<DyeColor, WaypointCompassItem> waypointCompasses = new EnumMap<>(DyeColor.class);
 
 	// blocks
 	public static Block redstoneCharge;
@@ -140,11 +141,12 @@ public class InspirationsTools extends PulseBase {
 
 		// White is the undyed version, so it's available without Config.dyeWaypointCompass() and has no color
 		// in the name.
-		waypointCompasses[DyeColor.WHITE.getId()] = registerItem(r,
+		waypointCompasses.put(DyeColor.WHITE, registerItem(r,
 				new WaypointCompassItem(0xDDDDDD, 0xFFC100, Config.enableWaypointCompass::get
-		), "waypoint_compass");
-		waypointCompasses[DyeColor.BLACK.getId()] = registerItem(r,
-																														 new WaypointCompassItem(0x444444, DyeColor.RED.colorValue), "black_waypoint_compass");
+		), "waypoint_compass"));
+		waypointCompasses.put(DyeColor.BLACK, registerItem(r,
+				new WaypointCompassItem(0x444444, DyeColor.RED.colorValue), "black_waypoint_compass")
+		);
 
 		registerWaypointCompass(r, DyeColor.LIGHT_GRAY, DyeColor.WHITE.colorValue);
 		registerWaypointCompass(r, DyeColor.GRAY,       DyeColor.LIGHT_GRAY.colorValue);
@@ -171,10 +173,10 @@ public class InspirationsTools extends PulseBase {
 	}
 
 	private void registerWaypointCompass(IForgeRegistry<Item> r, DyeColor body, int needle) {
-		waypointCompasses[body.getId()] = registerItem(r,
+		waypointCompasses.put(body, registerItem(r,
 				new WaypointCompassItem(body.colorValue, needle),
 				body.getTranslationKey() + "_waypoint_compass"
-		);
+		));
 	}
 
 	@SubscribeEvent

@@ -53,8 +53,8 @@ public class InspirationsItemTagsProvider extends ItemTagsProvider {
 		// Copy the item form for us to use.
 		this.copy(BlockTags.CARPETS, InspirationsTags.Items.CARPETS);
 
-		this.getBuilder(InspirationsTags.Items.WAYPOINT_COMPASSES).add(InspirationsTools.waypointCompasses);
-
+		this.getBuilder(InspirationsTags.Items.WAYPOINT_COMPASSES)
+				.add(InspirationsTools.waypointCompasses.values().toArray(new Item[16]));
 	}
 
 	private void registerForgeTags() {
@@ -67,7 +67,7 @@ public class InspirationsItemTagsProvider extends ItemTagsProvider {
 					.getOrCreate(new ResourceLocation("forge", "dyes/" + color.getName()));
 			this.getBuilder(tag).add(InspirationsRecipes.simpleDyedWaterBottle.get(color));
 		}
-		this.getBuilder(Tags.Items.DYES).add((Item[]) InspirationsRecipes.simpleDyedWaterBottle.values().toArray());
+		this.getBuilder(Tags.Items.DYES).add(InspirationsRecipes.simpleDyedWaterBottle.values().toArray(new Item[16]));
 		}
 	}
 
