@@ -12,7 +12,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CampfireBlock;
-import net.minecraft.block.material.Material;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -156,118 +155,6 @@ public class InspirationsRegistry {
 		// Clear the cache.
 		bookCache.clear();
 	}
-
-	/*
-	 * Anvil smashing
-	 */
-	private static Map<BlockState, BlockState> anvilSmashing = new HashMap<>();
-	private static Map<Block, BlockState> anvilSmashingBlocks = new HashMap<>();
-	private static Set<Material> anvilBreaking = new HashSet<>();
-
-	/**
-	 * Registers an anvil smashing result for the given block state
-	 * @param input  Input state
-	 * @param result Result state
-	 */
-	public static void registerAnvilSmashing(BlockState input, BlockState result) {
-		anvilSmashing.put(input, result);
-	}
-
-	/**
-	 * Registers an anvil smashing result for the given block state
-	 * @param input  Input state
-	 * @param result Result block
-	 */
-	public static void registerAnvilSmashing(BlockState input, Block result) {
-		registerAnvilSmashing(input, result.getDefaultState());
-	}
-
-	/**
-	 * Registers an anvil smashing result to break the given blockstate
-	 * @param input Input block
-	 */
-	public static void registerAnvilBreaking(BlockState input) {
-		registerAnvilSmashing(input, Blocks.AIR);
-	}
-
-	/**
-	 * Registers an anvil smashing result for the given block
-	 * @param input  Input block
-	 * @param result Result state
-	 */
-	public static void registerAnvilSmashing(Block input, BlockState result) {
-		anvilSmashingBlocks.put(input, result);
-	}
-
-	/**
-	 * Registers an anvil smashing result to break the given block
-	 * @param input  Input block
-	 * @param result Result block
-	 */
-	public static void registerAnvilSmashing(Block input, Block result) {
-		registerAnvilSmashing(input, result.getDefaultState());
-	}
-
-	/**
-	 * Registers an anvil smashing result to break the given block
-	 * @param input Input block
-	 */
-	public static void registerAnvilBreaking(Block input) {
-		registerAnvilSmashing(input, Blocks.AIR);
-	}
-
-	/**
-	 * Registers an anvil smashing result to break the given material
-	 * @param material Input material
-	 */
-	public static void registerAnvilBreaking(Material material) {
-		anvilBreaking.add(material);
-	}
-
-	/**
-	 * Gets the result of an anvil landing on the given blockstate
-	 * @param state Input blockstate
-	 * @return BlockState result. Will be air if its breaking, or null if there is no behavior
-	 */
-	public static BlockState getAnvilSmashResult(BlockState state) {
-		if (anvilSmashing.containsKey(state)) {
-			return anvilSmashing.get(state);
-		}
-		Block block = state.getBlock();
-		if (anvilSmashingBlocks.containsKey(block)) {
-			return anvilSmashingBlocks.get(block);
-		}
-		if (anvilBreaking.contains(state.getMaterial())) {
-			return Blocks.AIR.getDefaultState();
-		}
-		return null;
-	}
-
-	/**
-	 * Checks if we have a state specific smashing result. Used for JEI to filter out the lists for blocks
-	 * @param state State to check
-	 * @return True if we have a state specific result
-	 */
-	public static boolean hasAnvilSmashStateResult(BlockState state) {
-		return anvilSmashing.containsKey(state);
-	}
-
-	/**
-	 * Gets all smashing recipes in the form of blockstate to blockstate
-	 * @return List of map entries for the recipes
-	 */
-	public static List<Map.Entry<BlockState, BlockState>> getAllAnvilStateSmashing() {
-		return ImmutableList.copyOf(anvilSmashing.entrySet());
-	}
-
-	/**
-	 * Gets all smashing recipes in the form of block to blockstate
-	 * @return List of map entries for the recipes
-	 */
-	public static List<Map.Entry<Block, BlockState>> getAllAnvilBlockSmashing() {
-		return ImmutableList.copyOf(anvilSmashingBlocks.entrySet());
-	}
-
 
 	/*
 	 * Cauldron recipes

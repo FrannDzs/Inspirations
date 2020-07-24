@@ -194,7 +194,6 @@ public class InspirationsRecipes extends PulseBase {
 
 	@SubscribeEvent
 	public void init(FMLCommonSetupEvent event) {
-		InspirationsRegistry.registerAnvilBreaking(Material.GLASS);
 		if(Config.enableCauldronRecipes()) {
 			registerCauldronRecipes();
 		}
