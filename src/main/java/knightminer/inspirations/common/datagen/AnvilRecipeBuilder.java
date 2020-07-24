@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+@SuppressWarnings("unused")
 public class AnvilRecipeBuilder {
 	private final List<Ingredient> ingredients;
 	private final List<Pair<String, String>> properties;
@@ -167,12 +168,8 @@ public class AnvilRecipeBuilder {
 		));
 	}
 
-	public void buildInsp(Consumer<IFinishedRecipe> consumer, String id) {
+	public void build(Consumer<IFinishedRecipe> consumer, String id) {
 		build(consumer, Util.getResource(id));
-	}
-
-	public void buildVanilla(Consumer<IFinishedRecipe> consumer, String id) {
-		build(consumer, new ResourceLocation(id));
 	}
 
 	// Same name as the item.
@@ -198,7 +195,7 @@ public class AnvilRecipeBuilder {
 		} else {
 			id = result.getRegistryName();
 		}
-		build(consumer, id);
+		build(consumer, Util.getResource(id.getPath()));
 	}
 
 	private static class Finished implements IFinishedRecipe {

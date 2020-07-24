@@ -97,9 +97,9 @@ public class RecipesRecipeProvider extends RecipeProvider implements IConditionB
 		bottleMixVanilla(DyeColor.PINK, DyeColor.RED, DyeColor.WHITE);
 		bottleMixVanilla(DyeColor.GREEN, DyeColor.BLUE, DyeColor.RED);
 
-		AnvilRecipeBuilder.places(Blocks.COBBLESTONE).addIngredient(Blocks.STONE).buildVanilla(consumer, "cobble_from_stone_anvil_smashing");
-		AnvilRecipeBuilder.places(Blocks.COBBLESTONE).addIngredient(Blocks.STONE_BRICKS).buildVanilla(consumer, "cobble_from_bricks_anvil_smashing");
-		AnvilRecipeBuilder.places(Blocks.COBBLESTONE).addIngredient(Blocks.SMOOTH_STONE).buildVanilla(consumer, "cobble_from_smooth_stone_anvil_smashing");
+		AnvilRecipeBuilder.places(Blocks.COBBLESTONE).addIngredient(Blocks.STONE).build(consumer, "cobble_from_stone_anvil_smashing");
+		AnvilRecipeBuilder.places(Blocks.COBBLESTONE).addIngredient(Blocks.STONE_BRICKS).build(consumer, "cobble_from_bricks_anvil_smashing");
+		AnvilRecipeBuilder.places(Blocks.COBBLESTONE).addIngredient(Blocks.SMOOTH_STONE).build(consumer, "cobble_from_smooth_stone_anvil_smashing");
 		AnvilRecipeBuilder.places(Blocks.MOSSY_COBBLESTONE).addIngredient(Blocks.MOSSY_STONE_BRICKS).build(consumer);
 		AnvilRecipeBuilder.places(Blocks.PRISMARINE).addIngredient(Blocks.PRISMARINE_BRICKS).build(consumer);
 		AnvilRecipeBuilder.places(Blocks.END_STONE).addIngredient(Blocks.END_STONE_BRICKS).build(consumer);
@@ -120,8 +120,8 @@ public class RecipesRecipeProvider extends RecipeProvider implements IConditionB
 		AnvilRecipeBuilder.smashes().addIngredient(Blocks.JACK_O_LANTERN).build(consumer);
 		AnvilRecipeBuilder.smashes().addIngredient(Blocks.MELON).build(consumer);
 
-		AnvilRecipeBuilder.smashes().addIngredient(Tags.Blocks.GLASS).buildVanilla(consumer, "glass_tag");
-		AnvilRecipeBuilder.smashes().addIngredient(Tags.Blocks.GLASS_PANES).buildVanilla(consumer, "glass_panes_tag");
+		AnvilRecipeBuilder.smashes().addIngredient(Tags.Blocks.GLASS).build(consumer, "glass_tag");
+		AnvilRecipeBuilder.smashes().addIngredient(Tags.Blocks.GLASS_PANES).build(consumer, "glass_panes_tag");
 
 		// Smash all silverfish blocks.
 		AnvilRecipeBuilder.smashes().addIngredient(Blocks.INFESTED_CHISELED_STONE_BRICKS).build(consumer);
