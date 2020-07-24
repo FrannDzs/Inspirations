@@ -5,8 +5,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.mojang.datafixers.util.Pair;
-import knightminer.inspirations.Inspirations;
 import knightminer.inspirations.library.InspirationsRegistry;
+import knightminer.inspirations.library.Util;
 import knightminer.inspirations.library.recipe.BlockIngredient;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -375,8 +375,7 @@ public class AnvilRecipe implements IRecipe<AnvilInventory> {
 		return InspirationsRegistry.ANVIL_RECIPE_TYPE;
 	}
 
-	public static final IRecipeSerializer<?> SERIALIZER = new AnvilRecipeSerializer()
-			.setRegistryName(new ResourceLocation(Inspirations.modID, "anvil_smashing"));
+	public static final IRecipeSerializer<?> SERIALIZER = new AnvilRecipeSerializer().setRegistryName(Util.getResource("anvil_smashing"));
 
 	private static class AnvilRecipeSerializer
 			extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>
