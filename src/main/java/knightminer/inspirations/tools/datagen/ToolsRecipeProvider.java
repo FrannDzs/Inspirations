@@ -113,7 +113,7 @@ public class ToolsRecipeProvider extends RecipeProvider implements IConditionBui
 				.patternLine(" I ")
 				.build(consumer);
 
-		Item undyedCompass = InspirationsTools.waypointCompasses[DyeColor.WHITE.getId()];
+		Item undyedCompass = InspirationsTools.waypointCompasses.get(DyeColor.WHITE);
 		CondRecipe.shaped(undyedCompass)
 				.addCondition(TOOLS)
 				.addCondition(ConfigEnabledCondition.CRAFT_WAYPOINT)
@@ -131,7 +131,7 @@ public class ToolsRecipeProvider extends RecipeProvider implements IConditionBui
 				.build(consumer);
 
 		for (DyeColor color: DyeColor.values()) {
-			CondRecipe.shapeless(InspirationsTools.waypointCompasses[color.getId()])
+			CondRecipe.shapeless(InspirationsTools.waypointCompasses.get(color))
 					.custom(DyeWaypointCompassRecipe.SERIALIZER)
 					.addCondition(TOOLS)
 					.addCondition(ConfigEnabledCondition.DYE_WAYPOINT)
